@@ -1,0 +1,21 @@
+@CHARSET "ISO-8859-1";
+
+.form-horizontal .control-group {
+	margin-bottom: 10px;
+}
+
+.input-prepend .input-xlarge .ui-autocomplete-input {
+	width: 244px;
+}
+
+select.input-xlarge {
+	width: 285px;
+}
+
+.form-horizontal .controls {
+	margin-left: 130px;
+}
+
+.form-horizontal .control-label {
+	width: 120px;
+}
