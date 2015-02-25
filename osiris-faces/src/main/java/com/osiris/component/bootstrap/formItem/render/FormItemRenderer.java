@@ -41,7 +41,7 @@ public class FormItemRenderer extends CoreRenderer {
 		ResponseWriter writer = context.getResponseWriter();
 		
 		writer.startElement(HTML.DIV_ELEM, null);
-		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "control-group " + formItem.getStyleClass(), null);
+		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "form-group " + formItem.getStyleClass(), null);
 		
 		String style = formItem.getStyle();
 		if (!style.isEmpty()) {
@@ -56,12 +56,12 @@ public class FormItemRenderer extends CoreRenderer {
 //		label.encodeAll(context);
 		
 		writer.startElement(HTML.LABEL_ELEM, null);
-		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "control-label", null);
+		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "col-sm-2 control-label", null);
 		writer.writeText(formItem.getLabel(), null);
 		writer.endElement(HTML.LABEL_ELEM);
 		
 		writer.startElement(HTML.DIV_ELEM, null);
-		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "controls", null);
+		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "col-sm-5", null);
 		
 		renderChildren(context, formItem);
 		

@@ -1,4 +1,4 @@
-package com.osiris.component.bootstrap.formItem;
+package com.osiris.component.bootstrap.panel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,23 +10,23 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIPanel;
 
 /**
- * Classe que representa o componente de formItem.
+ * Classe que representa um panel do bootstrap.
  * 
  * @author Cristian Urbainski<cristianurbainskips@gmail.com>
- * @since 14/11/2012
+ * @since 13/07/2013
  * @version 1.0
  *
  */
 @ResourceDependencies({
 	@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css")
 })
-@FacesComponent(value = UIFormItem.COMPONENT_TYPE)
-public class UIFormItem extends UIPanel {
+@FacesComponent(value = UIBootstrapPanel.COMPONENT_TYPE)
+public class UIBootstrapPanel extends UIPanel {
 
 	/**
 	 * Tipo do componente.
 	 */
-	public static final String COMPONENT_TYPE = "com.osiris.component.bootstrap.FormItem";
+	public static final String COMPONENT_TYPE = "com.osiris.component.bootstrap.Panel";
 	
 	/**
 	 * Familia do componente.
@@ -34,9 +34,9 @@ public class UIFormItem extends UIPanel {
 	public static final String COMPONENT_FAMILY = "com.osiris.component.bootstrap";
 	
 	/**
-	 * Renderizador padrão do componente.
+	 * Renderizador padrÃ£o do componente.
 	 */
-	public static final String DEFAULT_RENDERER = "com.osiris.component.bootstrap.FormItemRenderer";
+	private static final String DEFAULT_RENDERER = "com.osiris.component.bootstrap.PanelRenderer";
 	
 	/**
 	 * Pacote otimizado do componente.
@@ -47,25 +47,29 @@ public class UIFormItem extends UIPanel {
 	 * Classe interna para definição dos parametros da classe.
 	 * 
 	 * @author Cristian Urbainski<cristianurbainskips@gmail.com>
-	 * @since 18/07/2013
+	 * @since 24/02/2015
 	 * @version 1.0
 	 *
 	 */
 	protected enum PropertyKeys {
+		
 		/**
-		 * Label para do componente.
+		 * O titulo do panel.
 		 */
-		label,
+		title,
+		
 		/**
-		 * Label para o componente.
+		 * A classe do panel, primary, warning, success, danger, etc...
 		 */
-		labelFor,
+		severity,
+		
 		/**
-		 * Estilo inline para o componente.
+		 * Estilo extra do compoente.
 		 */
 		style,
+		
 		/**
-		 * Classes de estilo para o componente.
+		 * Classe de estilo extra do componente.
 		 */
 		styleClass;
 		
@@ -94,23 +98,48 @@ public class UIFormItem extends UIPanel {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
-
+		
 	}
 	
 	/**
 	 * Construtor default do componente.
 	 */
-	public UIFormItem() {
+	public UIBootstrapPanel() {
 		setRendererType(DEFAULT_RENDERER);
 	}
-	
-	@Override
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 	
+	public java.lang.String getTitle() {
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.title, null);
+	}
+	
+	public java.lang.String getSeverity() {
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.severity, "default");
+	}
+	
+	/**
+	 * Set do severity.
+	 * @param severity do componente
+	 */
+	public void setSeverity(java.lang.String severity) {
+		getStateHelper().put(PropertyKeys.severity, severity);
+		handleAttribute("severity", severity);
+	}
+	
+    /**
+     * Set do title.
+     * @param title 
+     */
+	public void setTitle(java.lang.String title) {
+		getStateHelper().put(PropertyKeys.title, title);
+		handleAttribute("title", title);
+	}
+	
 	public java.lang.String getStyle() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.style, "");
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.style, null);
 	}
 	
 	/**
@@ -123,7 +152,7 @@ public class UIFormItem extends UIPanel {
 	}
 
 	public java.lang.String getStyleClass() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.styleClass, "");
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.styleClass, null);
 	}
 	
 	/**
@@ -135,34 +164,8 @@ public class UIFormItem extends UIPanel {
 		handleAttribute("styleClass", styleClass);
 	}
 	
-	public java.lang.String getLabel() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.label, "");
-	}
-	
 	/**
-	 * Set do label.
-	 * @param label
-	 */
-	public void setLabel(java.lang.String label) {
-		getStateHelper().put(PropertyKeys.label, label);
-		handleAttribute("label", label);
-	}
-	
-	public java.lang.String getLabelFor() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.labelFor, "");
-	}
-	
-	/**
-	 * Set do label.
-	 * @param label
-	 */
-	public void setLabelFor(java.lang.String labelFor) {
-		getStateHelper().put(PropertyKeys.labelFor, labelFor);
-		handleAttribute("labelFor", labelFor);
-	}
-	
-	/**
-	 * Método hanfleAttributes copiado do primefaces.
+	 * Método handleAttributes copiado do primefaces.
 	 * 
 	 * @param name nome 
 	 * @param value objeto
