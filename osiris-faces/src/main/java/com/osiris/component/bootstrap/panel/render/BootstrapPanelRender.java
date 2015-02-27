@@ -66,7 +66,11 @@ public class BootstrapPanelRender extends CoreRenderer {
         
         writer.startElement(HTML.DIV_ELEM, null);
         writer.writeAttribute(HtmlConstants.CLASS_ATTR, "panel-heading", null);
-        writer.writeText(panel.getTitle(), null);
+        
+        if (panel.getTitle() != null) {
+        	writer.writeText(panel.getTitle(), null);
+        }
+
         writer.endElement(HTML.DIV_ELEM);
         
         writer.startElement(HTML.DIV_ELEM, null);
