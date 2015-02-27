@@ -9,11 +9,11 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.event.PhaseId;
 import javax.faces.render.FacesRenderer;
 
-import org.primefaces.renderkit.CoreRenderer;
-import org.primefaces.util.WidgetBuilder;
+//import org.primefaces.util.WidgetBuilder;
 
 import com.osiris.component.bootstrap.modal.UIModal;
 import com.osiris.component.event.CloseEvent;
+import com.osiris.component.renderer.CoreRenderer;
 import com.osiris.component.util.HTML;
 import com.osiris.component.util.HtmlConstants;
 
@@ -55,7 +55,7 @@ public class ModalRender extends CoreRenderer {
 			String eventTypeParam = requestParameterMap.get(EVENT_TYPE_PARAM);
 			
 			if (UIModal.CLOSE_EVENT_NAME.equals(eventTypeParam)) {
-				final CloseEvent closeEvent = new CloseEvent(modal, "");
+				final CloseEvent closeEvent = new CloseEvent(modal, null);
 				closeEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
 				closeEvent.queue();
 			}
@@ -77,7 +77,7 @@ public class ModalRender extends CoreRenderer {
 	 * @throws IOException 
 	 */
     protected void encodeScript(FacesContext context, UIModal modal) throws IOException {
-    	ResponseWriter writer = context.getResponseWriter();
+    	/*ResponseWriter writer = context.getResponseWriter();
     	String clientId = modal.getClientId(context);
         WidgetBuilder wb = getWidgetBuilder(context);
         wb.widget("Modal", modal.resolveWidgetVar(), clientId, true);
@@ -95,7 +95,7 @@ public class ModalRender extends CoreRenderer {
 
     	startScript(writer, clientId);
         writer.write(aux);
-        endScript(writer);
+        endScript(writer);*/
     }
 
     /**

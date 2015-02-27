@@ -7,9 +7,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import org.primefaces.renderkit.CoreRenderer;
-
 import com.osiris.component.bootstrap.menu.UISubMenu;
+import com.osiris.component.renderer.CoreRenderer;
 import com.osiris.component.util.HTML;
 import com.osiris.component.util.HtmlConstants;
 

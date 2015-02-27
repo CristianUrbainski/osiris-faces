@@ -18,9 +18,8 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.FacesEvent;
 import javax.faces.event.PhaseId;
 
-import org.primefaces.component.api.Widget;
-import org.primefaces.event.CloseEvent;
-
+import com.osiris.component.api.Widget;
+import com.osiris.component.event.CloseEvent;
 import com.osiris.component.util.Constantes;
 
 /**

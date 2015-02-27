@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIPanel;
 
@@ -17,9 +15,6 @@ import javax.faces.component.UIPanel;
  * @version 1.0
  *
  */
-@ResourceDependencies({
-	@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css")
-})
 @FacesComponent(value = UIBootstrapPanel.COMPONENT_TYPE)
 public class UIBootstrapPanel extends UIPanel {
 

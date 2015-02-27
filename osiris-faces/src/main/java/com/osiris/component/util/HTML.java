@@ -1,6 +1,5 @@
 package com.osiris.component.util;
 
-import org.primefaces.util.ArrayUtils;
 
 /**
  * Interface utilitária para manter constantes de tags html.
@@ -115,7 +114,7 @@ public final class HTML {
 	/**
 	 * Atributos com eventos para um input.
 	 */
-	public static final String[] INPUT_TEXT_ATTRS_WITHOUT_EVENTS = {
+	/*public static final String[] INPUT_TEXT_ATTRS_WITHOUT_EVENTS = {
 		"accesskey",
 		"alt",
         "autocomplete",
@@ -125,12 +124,12 @@ public final class HTML {
 		"size",
 		"tabindex",
 		"title"
-	};
+	};*/
 	
 	/**
 	 * Eventos comuns ao componentes html.
 	 */
-	public static final String[] COMMON_EVENTS = {
+	/*public static final String[] COMMON_EVENTS = {
 		"onclick",
 		"ondblclick",
 		"onkeydown",
@@ -141,28 +140,28 @@ public final class HTML {
 		"onmouseout",
 		"onmouseover",
 		"onmouseup"
-	};
+	};*/
 	
 	/**
 	 * Mudança de valor componente select.
 	 */
-	public static final String[] CHANGE_SELECT_EVENTS = {
+	/*public static final String[] CHANGE_SELECT_EVENTS = {
 		"onchange",
 		"onselect"
-	};
+	};*/
 	
 	/**
 	 * Evento de focos.
 	 */
-	public static final String[] BLUR_FOCUS_EVENTS = {
+	/*public static final String[] BLUR_FOCUS_EVENTS = {
 		"onblur",
 		"onfocus"
-	};
+	};*/
 	
 	/**
 	 * Atributos do input text do html.
 	 */
-	public static final String[] INPUT_TEXT_ATTRS = ArrayUtils.concat(
-			INPUT_TEXT_ATTRS_WITHOUT_EVENTS, COMMON_EVENTS, CHANGE_SELECT_EVENTS, BLUR_FOCUS_EVENTS);
+	/*public static final String[] INPUT_TEXT_ATTRS = ArrayUtils.concat(
+			INPUT_TEXT_ATTRS_WITHOUT_EVENTS, COMMON_EVENTS, CHANGE_SELECT_EVENTS, BLUR_FOCUS_EVENTS);*/
 	
 }

@@ -8,9 +8,9 @@
 		
 	<render-kit>
 		<render-kit-id>HTML_BASIC</render-kit-id>
-		<client-behavior-renderer>
-			<client-behavior-renderer-type>org.primefaces.component.behavior.ajax.AjaxBehavior</client-behavior-renderer-type>
-			<client-behavior-renderer-class>org.primefaces.component.behavior.ajax.AjaxBehaviorRenderer</client-behavior-renderer-class>
-		</client-behavior-renderer>
+<!-- 		<client-behavior-renderer> -->
+<!-- 			<client-behavior-renderer-type>org.primefaces.component.behavior.ajax.AjaxBehavior</client-behavior-renderer-type> -->
+<!-- 			<client-behavior-renderer-class>org.primefaces.component.behavior.ajax.AjaxBehaviorRenderer</client-behavior-renderer-class> -->
+<!-- 		</client-behavior-renderer> -->
 	</render-kit>
 </faces-config>

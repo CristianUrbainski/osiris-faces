@@ -1,6 +1,7 @@
 package com.osiris.component.event;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.behavior.Behavior;
 import javax.faces.event.FacesEvent;
 import javax.faces.event.FacesListener;
 
@@ -23,9 +24,9 @@ public class CloseEvent extends FacesEvent {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Valor informado no componente em tela.
+	 * Evento.
 	 */
-	private final String value;
+	private final Behavior behavior;
 	
 	/**
 	 * Construtor.
@@ -33,13 +34,13 @@ public class CloseEvent extends FacesEvent {
 	 * @param component o componente que disparou o evento
 	 * @param value valor informado
 	 */
-	public CloseEvent(UIComponent component, String value) {
+	public CloseEvent(UIComponent component, Behavior behavior) {
 		super(component);
-		this.value = value;
+		this.behavior = behavior;
 	}
 	
-	public String getValue() {
-		return value;
+	public Behavior getBehaviorEvent() {
+		return behavior;
 	}
 			
 	@Override

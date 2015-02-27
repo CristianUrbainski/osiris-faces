@@ -189,4 +189,5 @@ public class UIAlert extends UIPanel {
 			}
 		}
 	}
+
 }
