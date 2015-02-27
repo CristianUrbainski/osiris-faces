@@ -12,8 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
-import org.apache.commons.fileupload.RequestContext;
-
 import com.osiris.component.util.WidgetBuilder;
 
 /**
