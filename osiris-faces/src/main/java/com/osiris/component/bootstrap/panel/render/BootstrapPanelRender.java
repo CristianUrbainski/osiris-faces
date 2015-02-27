@@ -81,7 +81,6 @@ public class BootstrapPanelRender extends CoreRenderer {
 	
     @Override
     public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
-        //Rendering happens on encodeEnd
     }
 
     @Override
@@ -89,5 +88,4 @@ public class BootstrapPanelRender extends CoreRenderer {
         return true;
     }
     
-	
 }
