@@ -8,6 +8,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import com.osiris.component.bootstrap.formItem.UIFormItem;
+import com.osiris.component.bootstrap.formItem.UIFormItem.PositionLabel;
 import com.osiris.component.renderer.CoreRenderer;
 import com.osiris.component.util.HTML;
 import com.osiris.component.util.HtmlConstants;
@@ -40,38 +41,47 @@ public class FormItemRenderer extends CoreRenderer {
 		ResponseWriter writer = context.getResponseWriter();
 		
 		writer.startElement(HTML.DIV_ELEM, null);
-		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "form-group " + formItem.getStyleClass(), null);
+		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "form-group", null);
 		
 		String style = formItem.getStyle();
 		if (!style.isEmpty()) {
 			writer.writeAttribute(HtmlConstants.STYLE_ATTRIBUTE, style, null);
 		}
 		
-//		HtmlOutputLabel label = (HtmlOutputLabel) context.getApplication().createComponent(HtmlOutputLabel.COMPONENT_TYPE);
-//		label.setLang(formItem.getLabel());
-//		label.setFor(formItem.getLabelFor());
-//		label.setStyleClass("control-label");
-//		
-//		label.encodeAll(context);
+		PositionLabel positionLabel = PositionLabel.valueOf(formItem.getLabelPosition());
+		if (!formItem.getLabel().isEmpty()) {
+			
+			writer.startElement(HTML.LABEL_ELEM, null);
+			
+			if (PositionLabel.left.equals(positionLabel)) {
+				writer.writeAttribute(HtmlConstants.CLASS_ATTR, "col-sm-2 control-label " + formItem.getLabelClass(), null);
+			} else if (!formItem.getLabelClass().isEmpty()) {
+				writer.writeAttribute(HtmlConstants.CLASS_ATTR, formItem.getLabelClass(), null);
+			}
+			
+			if (!formItem.getLabelFor().isEmpty()) {
+				writer.writeAttribute(HtmlConstants.FOR_ATTR, formItem.getLabelFor(), null);
+			}
+			writer.writeText(formItem.getLabel(), null);
+			writer.endElement(HTML.LABEL_ELEM);
+		}
 		
-		writer.startElement(HTML.LABEL_ELEM, null);
-		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "col-sm-2 control-label", null);
-		writer.writeText(formItem.getLabel(), null);
-		writer.endElement(HTML.LABEL_ELEM);
-		
-		writer.startElement(HTML.DIV_ELEM, null);
-		writer.writeAttribute(HtmlConstants.CLASS_ATTR, "col-sm-5", null);
+		if (PositionLabel.left.equals(positionLabel)) {
+			writer.startElement(HTML.DIV_ELEM, null);
+			writer.writeAttribute(HtmlConstants.CLASS_ATTR, formItem.getControlClass(), null);
+		}
 		
 		renderChildren(context, formItem);
 		
-		writer.endElement(HTML.DIV_ELEM);
+		if (PositionLabel.left.equals(positionLabel)) {
+			writer.endElement(HTML.DIV_ELEM);
+		}
 		writer.endElement(HTML.DIV_ELEM);
 	}
 	
     
     @Override
     public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
-        //Rendering happens on encodeEnd
     }
 
     @Override
