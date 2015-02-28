@@ -18,7 +18,8 @@ import javax.faces.component.UIPanel;
  *
  */
 @ResourceDependencies({
-	@ResourceDependency(library = "css", name = "bootstrap.min.css")
+	@ResourceDependency(library = "bootstrap", name = "css/bootstrap.css"),
+	@ResourceDependency(library = "bootstrap", name = "js/bootstrap.js")
 })
 @FacesComponent(value = UIAlert.COMPONENT_TYPE)
 public class UIAlert extends UIPanel {
