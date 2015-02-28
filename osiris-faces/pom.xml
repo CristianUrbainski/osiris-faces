@@ -68,50 +68,6 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>net.alchim31.maven</groupId>
-				<artifactId>yuicompressor-maven-plugin</artifactId>
-				<version>1.1</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compress</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<nosuffix>true</nosuffix>
-					<linebreakpos>-1</linebreakpos>
-<!-- 					<excludes> -->
-<!-- 						<exclude>**/*.js</exclude> -->
-<!-- 						<exclude>**/*.css</exclude> -->
-<!-- 					</excludes> -->
-					<aggregations>
-						<aggregation>
-							<insertNewLine>true</insertNewLine>
-							<removeIncluded>true</removeIncluded>
-							<output>${project.build.directory}/classes/META-INF/resources/osiris/osiris.css</output>
-							<includes>
-								<include>${project.build.directory}/classes/META-INF/resources/osiris/css/mybootstrap.css</include>
-								<include>${project.build.directory}/classes/META-INF/resources/osiris/css/menu.css</include>
-								<include>${project.build.directory}/classes/META-INF/resources/osiris/bootstrap/css/bootstrap.css</include>
-								<include>${project.build.directory}/classes/META-INF/resources/osiris/bootstrap/css/bootstrap-theme.css</include>
-							</includes>
-						</aggregation>
-						<aggregation>
-							<insertNewLine>true</insertNewLine>
-							<removeIncluded>true</removeIncluded>
-							<output>${project.build.directory}/classes/META-INF/resources/osiris/osiris.js</output>
-							<includes>
-								<include>${project.build.directory}/classes/META-INF/resources/osiris/jquery/jquery-1.9.1.min.js</include>
-								<include>${project.build.directory}/classes/META-INF/resources/osiris/core/core.js</include>
-								<include>${project.build.directory}/classes/META-INF/resources/osiris/bootstrap/js/bootstrap.js</include>
-							</includes>
-						</aggregation>
-					</aggregations>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 </project>
