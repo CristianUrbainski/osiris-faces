@@ -13,6 +13,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
 import com.osiris.component.util.WidgetBuilder;
+import com.sun.faces.facelets.el.TagValueExpression;
 
 /**
  * Renderer base do projeto.
@@ -96,6 +97,29 @@ public class CoreRenderer extends Renderer {
 							attribute);
 			}
 		}
+	}
+	
+	/**
+	 * Método responsável por renderizar os argumentos com o PassThruAttributes.
+	 * 
+	 * @param context - context do jsf
+	 * @param component - componente
+	 * 
+	 * @throws IOException - exceção
+	 */
+	protected void renderPassThruAttributes(FacesContext context, UIComponent component)
+			throws IOException {
+		
+		ResponseWriter writer = context.getResponseWriter();
+		for (String key : component.getPassThroughAttributes().keySet()) {
+    		Object object = component.getPassThroughAttributes().get(key);
+    		
+    		if (object instanceof TagValueExpression) {
+    			object = ((TagValueExpression) object).getValue(context.getELContext());
+    		}
+    		
+    		writer.writeAttribute(key, object, key);
+    	}
 	}
 
 	/**

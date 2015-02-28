@@ -7,8 +7,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import com.sun.faces.facelets.el.TagValueExpression;
 import com.osiris.component.bootstrap.prepend.UIPrepend;
+import com.osiris.component.bootstrap.prepend.UIPrepend.PrependPosition;
 import com.osiris.component.renderer.CoreRenderer;
 import com.osiris.component.util.HTML;
 import com.osiris.component.util.HtmlConstants;
@@ -44,35 +44,58 @@ public class PrependRender extends CoreRenderer {
 	 */
 	protected void encodeMarkup(FacesContext context, UIPrepend prepend) throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
-        String clientId = prepend.getClientId(context);
         
         writer.startElement(HTML.DIV_ELEM, null);
-        writer.writeAttribute(HtmlConstants.ID_ATTRIBUTE, clientId, null);
         writer.writeAttribute(HtmlConstants.CLASS_ATTR, "input-group", null);
         
         if (prepend.getStyle() != null && !prepend.getStyle().isEmpty()) {
         	writer.writeAttribute(HtmlConstants.STYLE_ATTRIBUTE, prepend.getStyle(), null);
         }
         
-        rendererPassThroughAttributes(context, writer, prepend);
+        renderPassThruAttributes(context, prepend);
         
-        writer.startElement(HTML.SPAN_ELEM, null);
-        writer.writeAttribute(HtmlConstants.CLASS_ATTR, "input-group-addon", null);
-        
-        writer.startElement(HTML.SPAN_ELEM, null);
-        writer.writeAttribute(HtmlConstants.CLASS_ATTR, prepend.getIcon(), null);
-        writer.endElement(HTML.SPAN_ELEM);
-        
-        writer.endElement(HTML.SPAN_ELEM);
+        PrependPosition position = PrependPosition.valueOf(prepend.getPosition());
+        if (PrependPosition.left.equals(position)) {
+        	renderPrepend(prepend, writer);
+        }
         
         renderChildren(context, prepend);
+
+        if (PrependPosition.right.equals(position)) {
+        	renderPrepend(prepend, writer);
+        }
         
         writer.endElement(HTML.DIV_ELEM);
+	}
+
+	/**
+	 * Método que renderiza a parte de destaque do campo.
+	 * 
+	 * @param prepend - componente
+	 * @param writer - objeto para excrever na página
+	 * 
+	 * @throws IOException - exceção
+	 */
+	private void renderPrepend(UIPrepend prepend, ResponseWriter writer)
+			throws IOException {
+		writer.startElement(HTML.SPAN_ELEM, null);
+        writer.writeAttribute(HtmlConstants.CLASS_ATTR, "input-group-addon", null);
+        
+        if (prepend.getIcon() != null) {
+	        writer.startElement(HTML.SPAN_ELEM, null);
+	        writer.writeAttribute(HtmlConstants.CLASS_ATTR, prepend.getIcon(), null);
+	        writer.endElement(HTML.SPAN_ELEM);
+        }
+        
+        if (prepend.getPrependText() != null) {
+        	writer.writeText(prepend.getPrependText(), null);
+        }
+        
+        writer.endElement(HTML.SPAN_ELEM);
 	}
 	
    @Override
     public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
-        //Rendering happens on encodeEnd
     }
 
     @Override
@@ -80,24 +103,4 @@ public class PrependRender extends CoreRenderer {
         return true;
     }
 
-    /**
-     * Método para escrever atributos extras do componente.
-     * 
-     * @param context do jsf
-     * @param writer de texto
-     * @param prepend componente
-     * @throws IOException 
-     */
-    private void rendererPassThroughAttributes(FacesContext context, ResponseWriter writer, UIPrepend prepend) 
-    		throws IOException {
-    	for (String key : prepend.getPassThroughAttributes().keySet()) {
-    		Object object = prepend.getPassThroughAttributes().get(key);
-    		
-    		if (object instanceof TagValueExpression) {
-    			object = ((TagValueExpression) object).getValue(context.getELContext());
-    		}
-    		
-    		writer.writeAttribute(key, object, key);
-    	}
-    }
 }

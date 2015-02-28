@@ -52,12 +52,20 @@ public class UIPrepend extends UIPanel {
 		 */
 		icon,
 		/**
+		 * Texto para exibir o prenpend.
+		 */
+		prependText,
+		/**
+		 * Position do prepend.
+		 */
+		position,
+		/**
 		 * Style extra para o componente.
 		 */
 		style;
 		
 		/**
-		 * Valor que ser� retornado.
+		 * Valor que será retornado.
 		 */
 		private String toString;
 
@@ -80,6 +88,44 @@ public class UIPrepend extends UIPanel {
 		 */
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
+	
+	public enum PrependPosition {
+		
+		/**
+		 * Posicionado a esquerda.
+		 */
+		left("left"),
+		
+		/**
+		 * Posicionado a direita.
+		 */
+		right("right");
+		
+		/**
+		 * Valor.
+		 */
+		private String value;
+		
+		/**
+		 * Construtor default do componente.
+		 * @param position posicao do label
+		 */
+		private PrependPosition(String position) {
+			this.value = position;
+		}
+		
+		public String getValue() {
+			return value;
+		}
+		
+		/**
+		 * Método que retorna o toString da string interna.
+		 * @return toString da string interna
+		 */
+		public String toString() {
+			return value;
 		}
 	}
 
@@ -110,6 +156,32 @@ public class UIPrepend extends UIPanel {
 	
 	public java.lang.String getStyle() {
 		return (java.lang.String) getStateHelper().eval(PropertyKeys.style, null);
+	}
+	
+	/**
+	 * Set do prependText.
+	 * @param prependText 
+	 */
+	public void setPrependText(java.lang.String prependText) {
+		getStateHelper().put(PropertyKeys.prependText, prependText);
+		handleAttribute("prependText", prependText);
+	}
+	
+	public java.lang.String getPrependText() {
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.prependText, null);
+	}
+	
+	/**
+	 * Set do position.
+	 * @param position 
+	 */
+	public void setPosition(java.lang.String position) {
+		getStateHelper().put(PropertyKeys.position, position);
+		handleAttribute("position", position);
+	}
+	
+	public java.lang.String getPosition() {
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.position, "left");
 	}
 	
 	/**

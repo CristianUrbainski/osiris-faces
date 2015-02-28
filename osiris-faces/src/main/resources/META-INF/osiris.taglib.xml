@@ -39,6 +39,14 @@
 			<name>style</name>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<name>prependText</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>position</name>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 	<tag>
 		<tag-name>alert</tag-name>
